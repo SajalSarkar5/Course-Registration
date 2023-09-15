@@ -10,7 +10,7 @@ const Course = ({ selectCourseName, Remaining, totalRemaining }) => {
                 <div>
                     <h2 className="text-xl text-[#1C1B1B] font-bold py-5">Course Name</h2>
                     <div>
-                        <ol className="list-decimal">
+                        <ol className="list-decimal pl-5">
                             {
                                 selectCourseName.map((card, i) => {
                                     return <li key={i} className="text-[#737272] text-base font-normal py-1">{card.title}</li>
