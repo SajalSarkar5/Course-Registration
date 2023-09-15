@@ -3,11 +3,16 @@ import { useState } from "react";
 import Card from "../card/card";
 import Course from "../Course/Course";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Home = () => {
 
     const [cards, setCards] = useState([]);
     const [selectCourseName, setSelectCourseName] = useState([]);
+    const [Remaining, setRemaining] = useState(0);
+    const [totalRemaining, setTotalRemaining] = useState(0)
 
     useEffect(() => {
         fetch('FakeData.json')
@@ -17,9 +22,27 @@ const Home = () => {
 
 
     const handleSelectActor = (card) => {
-        setSelectCourseName([...selectCourseName, card])
+        const isExist = selectCourseName.find(item => item.id == card.id)
+
+        let count = card.Credit;
+
+
+        if (isExist) {
+            toast("Wow so easy!");
+        } else {
+
+            selectCourseName.forEach((item) => {
+                count = count + item.Credit;
+            })
+
+            const creditRemaining = 20 - count;
+            setTotalRemaining(count);
+            setRemaining(creditRemaining);
+
+
+            setSelectCourseName([...selectCourseName, card])
+        }
     }
-    console.log(selectCourseName)
 
 
     return (
@@ -36,9 +59,21 @@ const Home = () => {
                 </div>
 
                 <div className="w-1/4">
-                    <Course selectCourseName={selectCourseName}></Course>
+                    <Course selectCourseName={selectCourseName} Remaining={Remaining} totalRemaining={totalRemaining}></Course>
                 </div>
             </main>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </div>
     );
 };
