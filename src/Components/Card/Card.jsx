@@ -1,7 +1,7 @@
 
 
-const Card = ({ card }) => {
-    const {cover_image, title, description, price, Credit} = card;
+const Card = ({ card, handleSelectActor }) => {
+    const { cover_image, title, description, price, Credit } = card;
     return (
         <div>
             <div className="card card-compact bg-base-100 shadow-xl p-4">
@@ -14,7 +14,7 @@ const Card = ({ card }) => {
                         <p className="text-base text-[#737272] font-medium">Credit: {Credit} hr</p>
                     </div>
                     <div className="">
-                        <button className="btn bg-[#2F80ED] hover:bg-sky-500 w-full text-lg font-semibold text-[#FFF] capitalize">Select</button>
+                        <button onClick={() => handleSelectActor(card)} className="btn bg-[#2F80ED] hover:bg-sky-500 w-full text-lg font-semibold text-[#FFF] capitalize">Select</button>
                     </div>
                 </div>
             </div>

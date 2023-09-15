@@ -7,12 +7,19 @@ import Course from "../Course/Course";
 const Home = () => {
 
     const [cards, setCards] = useState([]);
+    const [selectCourseName, setSelectCourseName] = useState([]);
 
     useEffect(() => {
         fetch('FakeData.json')
-        .then(res => res.json())
-        .then(data => setCards(data))
+            .then(res => res.json())
+            .then(data => setCards(data))
     }, [])
+
+
+    const handleSelectActor = (card) => {
+        setSelectCourseName([...selectCourseName, card])
+    }
+    console.log(selectCourseName)
 
 
     return (
@@ -21,15 +28,15 @@ const Home = () => {
                 <h1 className="text-4xl text-[#1C1B1B] font-bold text-center my-11">Course Registration</h1>
             </header>
 
-            <main className="flex gap-6">
+            <main className="flex gap-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 w-3/4">
-                {
-                    cards.map((card, i) => <Card key={i} card={card}></Card>)
-                }
+                    {
+                        cards.map((card, i) => <Card key={i} card={card} handleSelectActor={handleSelectActor}></Card>)
+                    }
                 </div>
 
                 <div className="w-1/4">
-                    <Course></Course>
+                    <Course selectCourseName={selectCourseName}></Course>
                 </div>
             </main>
         </div>

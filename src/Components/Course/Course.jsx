@@ -1,6 +1,7 @@
 
 
-const Course = () => {
+const Course = ({ selectCourseName }) => {
+    
     return (
         <div>
             <div className="card card-compact  bg-base-100 shadow-xl p-6">
@@ -8,7 +9,13 @@ const Course = () => {
                 <hr />
                 <div>
                     <h2 className="text-xl text-[#1C1B1B] font-bold py-5">Course Name</h2>
-                    <p></p>
+                    {
+                        selectCourseName.map((card, i) => (
+                            <ol key={i}>
+                                <li>{card.title}</li>
+                            </ol>
+                        ))
+                    }
                     <div className="py-4">
                         <hr />
                     </div>
