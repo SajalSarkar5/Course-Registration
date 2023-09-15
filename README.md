@@ -1,8 +1,12 @@
-# React + Vite
+# Question Answer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Question Answer 1
 
-Currently, two official plugins are available:
+- This design is made for laptops and mobiles.
+- You can use 20 credits for registration.
+- If your credit is zero If you go down. You will see that.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+Question Answer 2
+
+I used fake data on my website. And loaded the data with UseFeed. Passed data to map function using fake data. Each card has a select button which can be clicked. Data is passed through calculations. I can display the data on a card on my right side. Added some functionality inside it. handle dot which allows me to display the toasts.

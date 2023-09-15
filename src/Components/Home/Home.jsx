@@ -22,9 +22,7 @@ const Home = () => {
 
         let total = card.Credit
 
-        if (isExist) {
-            return toast("Already select");
-        } else {
+        if (!isExist) {
             selectCourseName.forEach(item => {
                 total += item.Credit
             })
@@ -34,6 +32,8 @@ const Home = () => {
                 setSelectCourseName([...selectCourseName, card])
             }
 
+        } else {
+            return toast("Already select");
         }
     }
 
