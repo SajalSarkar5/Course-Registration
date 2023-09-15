@@ -10,8 +10,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const Home = () => {
     const [cards, setCards] = useState([]);
     const [selectCourseName, setSelectCourseName] = useState([]);
-    const [Remaining, setRemaining] = useState(0);
-    const [totalRemaining, setTotalRemaining] = useState(0);
 
     useEffect(() => {
         fetch('FakeData.json')
@@ -21,26 +19,23 @@ const Home = () => {
 
     const handleSelectActor = (card) => {
         const isExist = selectCourseName.find(item => item.id == card.id)
-        let count = card.Credit;
+
+        let total = card.Credit
 
         if (isExist) {
-            toast("Already select");
+            return toast("Already select");
         } else {
-
-            selectCourseName.forEach((item) => {
-                count = count + item.Credit;
+            selectCourseName.forEach(item => {
+                total += item.Credit
             })
-            const creditRemaining = 20 - count;
-            if (count > 20) {
+            if (total > 20) {
                 return toast("Total Credit Hour Limit Up");
             } else {
-                setTotalRemaining(count);
-                setRemaining(creditRemaining);
-                setSelectCourseName([...selectCourseName, card]);
+                setSelectCourseName([...selectCourseName, card])
             }
-        }   
-    }
 
+        }
+    }
 
     return (
         <div>
@@ -55,9 +50,11 @@ const Home = () => {
                     }
                 </div>
 
+
                 <div className="w-full lg:w-1/4">
-                    <Course selectCourseName={selectCourseName} Remaining={Remaining} totalRemaining={totalRemaining}></Course>
+                    <Course calculate={selectCourseName} ></Course>
                 </div>
+
             </main>
             <ToastContainer
                 position="top-center"

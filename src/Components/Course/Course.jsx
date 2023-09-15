@@ -1,30 +1,33 @@
 
 
-const Course = ({ selectCourseName, Remaining, totalRemaining }) => {
+import React from 'react';
+
+const Course = (props) => {
+    const data = props.calculate;
+    const creditHour = data.map(credit => credit.Credit)
+    const totalCredit = creditHour.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    const hourRemaining = 20 - totalCredit
+    const price = data.map(credit => credit.price)
+    const totalPrice = price.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
     return (
-        <div>
-            <div className="card card-compact  bg-base-100 shadow-xl p-6">
-                <h3 className="text-lg text-[#2F80ED] font-bold pb-5">Credit Hour Remaining <span>{Remaining}</span> hr</h3>
-                <hr />
-                <div>
-                    <h2 className="text-xl text-[#1C1B1B] font-bold py-5">Course Name</h2>
-                    <div>
-                        <ol className="list-decimal pl-5">
-                            {
-                                selectCourseName.map((card, i) => {
-                                    return <li key={i} className="text-[#737272] text-base font-normal py-1">{card.title}</li>
-                                })
-                            }
-                        </ol>
-                    </div>
-                    <div className="py-4">
-                        <hr />
-                    </div>
-                    <h5 className="text-base text-[#474747] font-medium py-4">Total Credit Hour : <span>{totalRemaining}</span></h5>
-                    <hr />
-                    <h4 className="text-base text-[#474747] font-semibold py-4">Total Price : <span></span> USD</h4>
-                </div>
+        <div className='p-6 rounded-xl bg-base-100 shadow-xl'>
+            <div className='pb-4 border-b'><h1 className='text-[#2F80ED] font-bold text-lg'>Credit Hour Remaining {hourRemaining} hr</h1></div>
+            <div className='pt-4 pb-[21px]'><h1 className='text-[#1C1B1B] text-xl font-bold'>Course Name</h1></div>
+            <div className='border-b'>
+                <ol className='text-[#1C1B1B99] pl-5 pb-6'>
+                    {
+                        data.map((item, i) => {
+                            return <li key={i} className='text-base font-normal leading-7 list-decimal'>{item.title}</li>
+                        })
+                    }
+                </ol>
+            </div>
+            <div className='py-4 border-b'>
+                <h2 className='text-[#1C1B1BCC] font-medium text-base'>Total Credit Hour : {totalCredit}</h2>
+            </div>
+            <div className='pt-4'>
+                <h3 className='text-[#1C1B1BCC] font-semibold text-base'>Total Price : {totalPrice} USD</h3>
             </div>
         </div>
     );
