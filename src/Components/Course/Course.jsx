@@ -4,7 +4,9 @@ import React from 'react';
 
 const Course = (props) => {
     const data = props.calculate;
+    console.log(data)
     const creditHour = data.map(credit => credit.Credit)
+    console.log(creditHour)
     const totalCredit = creditHour.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     const hourRemaining = 20 - totalCredit
     const price = data.map(credit => credit.price)
